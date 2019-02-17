@@ -5,24 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <title>WebSocket Map</title>
 </head>
 <body>
     <div class="chat-container">
         <div class="chat-title">
-            Chat
+            Chat<i id="dot"></i>
         </div>
         <div class="chat-window">
-
+            <ul id = "chat"></ul>
         </div>
         <div class="chat-message">
-            <form>
-                User name <br>
-                <input type="text" id="user" name="user_name"/>
+            <form onsubmit = "return false;">
+                Name: <br>
+                <input type = "text" id = "user"/>
             </form>
-            <form>
-                Message<br>
-                <textarea id="message" name="message"></textarea>
+            <form onsubmit = "addMessage(); return false;">
+                Message: <br>
+                <input type = "text" id = "message" placeholder="Press 'Enter' to send message"/>
             </form>
         </div>
     </div>
