@@ -1,8 +1,8 @@
-
+// długość i szerokość geograficzna dla Krakowa
 let lat = 50.05;
 let lng = 19.95;
 
-
+// funkcja tworząca mapę z markerami (z możliwością ich przesuwania strzałkami na klawiaturze)
 function initMap() 
 {
     let map = document.getElementById('map');
@@ -34,11 +34,13 @@ function initMap()
         websocket.send(message);
         });
 }
+
 chat = document.getElementById("chat");
 message = document.getElementById("message");
 user = document.getElementById("user");
 dot = document.getElementById("dot");
 
+// funkcja wysyłająca wiadomości
 function addMessage() 
 {
     let mdata = { "4" : user.value,"5" : message.value, "6" : "message"};
@@ -48,6 +50,7 @@ function addMessage()
     websocket.send(message);
 }
 
+// funkcja odbierająca wiadomości
 function onMessage(evt) 
 {
     user.value;
@@ -63,18 +66,21 @@ function onMessage(evt)
         marker2.setPosition({ lat: 50 + pozycja['1'], lng: 20 + pozycja['2'] });
     }
 }
-            
+
+// funkcja wyświetlająca zielony znacznik, gdy chat jest włączony (WebSocket działa)
 function onOpen(evt) 
 {
     dot.className = "fas fa-circle green";
 }
-            
+
+// funkcja wyświetlająca czerwony znacznik gdy chat jest wyłączony (WebSocket nie działa)
 function onClose(evt) 
 {
     dot.className = "fas fa-circle red";
     window.alert("WebSocket is Offline");
 }
-            
+
+// funkcja informująca o błędzie połączenia z WebSocketem
 function onError(evt) 
 {
     dot.className = "fas fa-circle red";
@@ -82,8 +88,8 @@ function onError(evt)
 }
 
 function onLoad() {
-    let webSocket = "ws://design.net.pl:8010";
-    websocket = new WebSocket(webSocket);
+    let webSocketSrc = "ws://design.net.pl:8010";
+    websocket = new WebSocket(webSocketSrc);
     websocket.onopen = function(evt) { onOpen(evt) };
     websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };
